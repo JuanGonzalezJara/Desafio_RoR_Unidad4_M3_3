@@ -1,6 +1,6 @@
 Desafio Unidad 4 Modulo 3
 
-# Flujos, Ciclos y Metodos en Ruby (2)!
+# Flujos, Ciclos y Metodos en Ruby (3)!
 
 Desafio orientado al uso de Metodos para la resolucion de requerimientos
 
