@@ -3,13 +3,16 @@
 # permita calcular el nuevo salario de un colaborador/a
 # en función de un porcentaje mínimo de aumento establecido.
 
+#Esto es para volver al menu dignamente
+require_relative 'util'
+
 def calculo_salario
     # Se define variable Salario y se solicita el valor a usuario validando que sea un dato valido
     salario = 0
-    while salario <= 0 do
+    while salario <= 0 || !salario.is_a?(Integer) do
         print "Ingrese el salario actual: "
         salario = gets.chomp.to_i
-        puts "El salario debe ser un valor numérico positivo." if salario <= 0
+        puts "El salario debe ser un valor numérico positivo." if salario <= 0 || !salario.is_a?(Integer) 
     end
     # Se define el porcentaje a aumentar solicitando al usuario la eleccion, se valida entrada
     numIncremento = 0
@@ -20,7 +23,7 @@ def calculo_salario
     end
 
     # Se setea el valor del % de incremento segun eleccion de usuario
-    numIncremento = 0
+    incremento = 0
     if numIncremento == 1
         incremento = 5
     elsif numIncremento == 2
@@ -28,10 +31,9 @@ def calculo_salario
     else
         incremento = 15
     end
-
+    # Se calcula el salario + aumento segun la eleccion del usuario
     salarioFinal = salario + (salario * (incremento/ 100.0))
     puts "====================================================="
     puts "El total del salario aumentado es de: #{salarioFinal}"
     puts "====================================================="
 end
-
