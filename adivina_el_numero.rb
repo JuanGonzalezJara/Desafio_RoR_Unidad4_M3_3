@@ -11,10 +11,17 @@ def adivina_el_numero
     nivel = 0
     while (1..5).include?(nivel) == false
         puts "Elige sabiamente"
-        puts "| \e[0;32mOpcion 1\e[m: 1 digito | \e[0;32mOpcion 2\e[m: 3 digitos | \e[0;32mOpcion 3\e[m: 6 digitos | \e[0;32mOpcion 4\e[m: Digitos Infinitos!! (mentira, solo 202 digitos) | \e[0;32mOpcion 5\e[m: Salir |"
+        puts "|\e[0;32mOpcion 1\e[m: 1 digito"
+        puts "|\e[0;32mOpcion 2\e[m: 3 digitos"
+        puts "|\e[0;32mOpcion 3\e[m: 6 digitos"
+        puts "|\e[0;32mOpcion 4\e[m: Digitos Infinitos!! (mentira, solo 202 digitos)"
+        puts "|\e[0;32mOpcion 5\e[m: Salir"
         print "Selecciona la opcion: "
         nivel = gets.chomp.to_i
-        puts "Opcion no valida, debe elegir una opcion entre el 1 y el 5" unless (1..5).include?(nivel)
+        unless (1..5).include?(nivel)
+            system("clear")
+            puts "\e[0;31mOpcion no valida, debe elegir una opcion entre el 1 y el 5\e[m"
+        end
     end
 
     # Seteamos el numero random
@@ -36,10 +43,14 @@ def adivina_el_numero
     flagWin = false
     reintento = ""
     while flagWin == false && (1..4).include?(nivel) do
+        system("clear")
         puts "Has elegido el Nivel de Dificultad #{nivel}."
         puts "Tienes 3 oportunidades para adivinar!"
         for i in 1..3
-            puts "Oportunidad #{i}! pssst, es #{num}"
+            puts "Oportunidad #{i}!"
+            if i == 3 && nivel == 4
+                puts "Pista: El numero tiene #{num.to_s.length} digitos"
+            end
             print "Escribe cual crees que es el numero: "
             prediccion = gets.chomp.to_i
             # validamos que sea un numero valido
@@ -50,8 +61,9 @@ def adivina_el_numero
                     break
                 end
             else
-                puts "Tu opcion no es valida, recuerda ingresar un numero"
-                print "presiona una tecla para continuar.."
+                system("clear")
+                puts "\e[0;31mTu opcion no es valida, recuerda ingresar un numero\e[m"
+                print "presiona Enter para continuar.."
                 gets
             end
 
@@ -60,12 +72,13 @@ def adivina_el_numero
             puts "=============================================="
             puts "Has Acertado!! El publico se vuelve locooo!!"
             puts "=============================================="
-            print "presiona una tecla para volver al menu principal.."
+            print
+            print "Presiona Enter para volver al menu principal.."
             gets
             carga_menu()
         else
             system("clear")
-            puts "Niun brillo"
+            puts "No has acertado el numero... 🤡"
             print "Deseas reintentar? (S/N): "
             reintento = gets.chomp.to_s.upcase
             while reintento != "S" && reintento != "N"

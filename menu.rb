@@ -20,22 +20,26 @@ def menu_inicio
         # llama al metodo segun la opcion elegida
         case opcion
         when 1
-            puts "Accediendo a Calculo de Aumento Salarial"
+            system("clear")
+            puts("¡Bienvenido/a al Calculo de Aumento Salarial!")
             calculo_salario()
             opcion = 0
         when 2
-            puts "Accediendo al juego 'Adivina el Numero!'"
+            system("clear")
+            puts("¡Bienvenido/a al juego 'Adivina el Numero!")
             adivina_el_numero()
             opcion = 0
         when 3
-            puts "Accediendo a Calculo de IMC"
-            # funcion()
+            system("clear")
+            puts("¡Bienvenido/a al sistema de cálculo IMC!")
+            caculo_imc_con_obesidad()
             opcion = 0
         when 4
             puts "Saliendo del programa..."
             exit
         else
-            puts "La opcion debe ser numerica y valida"
+            system("clear")
+            puts "\e[0;31mLa opcion debe ser numerica y valida (entre 1 y 5)\e[m"
             opcion = 0
         end
     end
