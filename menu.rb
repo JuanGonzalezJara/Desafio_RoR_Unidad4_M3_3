@@ -1,4 +1,4 @@
-# agrega los programas (archivos) que contiene los metodos
+# agrega los programas (rb) que contienen los metodos
 require_relative 'calculo_aumento'
 require_relative 'adivina_el_numero'
 require_relative 'calculo_obesidad'
@@ -45,5 +45,6 @@ def menu_inicio
     end
 end
 
-# Se llama al metodo que levanta el menu
+# Se llama al metodo que levanta el menu una vez que finaliza un programa o cuando se ingresa inicialmente
+system("clear")
 menu_inicio()

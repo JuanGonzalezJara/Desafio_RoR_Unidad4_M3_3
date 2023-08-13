@@ -7,6 +7,7 @@
 #Esto es para volver al menu dignamente
 require_relative 'util'
 
+# Solicitamos al usuario seleccionar el nivel de dificultad validando su entrada
 def adivina_el_numero
     nivel = 0
     while (1..5).include?(nivel) == false
@@ -24,7 +25,7 @@ def adivina_el_numero
         end
     end
 
-    # Seteamos el numero random
+    # Seteamos el numero random segun la dificultad seleccionada
     case nivel
     when 1
         num = rand(1..9)
@@ -35,21 +36,26 @@ def adivina_el_numero
     when 4
         num = rand(1..99999999999999999999**10)
     when 5
+        # Volvemos al menu principal si se elige la opcion 5
         carga_menu()
         return
     end
 
-    # Comienza el juego
+    # Comienza el juego, seteamos una flag para controlar cuando hay un acierto
     flagWin = false
+    # variable para controlar los intentos
     reintento = ""
+    # Iteramos mientras no exista un acierto, validamos nuevamente que la dificultad se haya seleccionado previamente
     while flagWin == false && (1..4).include?(nivel) do
         system("clear")
         puts "Has elegido el Nivel de Dificultad #{nivel}."
         puts "Tienes 3 oportunidades para adivinar!"
+        # Iteramos con un for para controlar los intentos
         for i in 1..3
             puts "Oportunidad #{i}!"
+            # Agregamos una ayudita para el nivel mas dificil
             if i == 3 && nivel == 4
-                puts "Pista: El numero tiene #{num.to_s.length} digitos"
+                puts "\e[0;32mPista\e[m: El numero tiene #{num.to_s.length} digitos"
             end
             print "Escribe cual crees que es el numero: "
             prediccion = gets.chomp.to_i
@@ -59,20 +65,24 @@ def adivina_el_numero
                 if prediccion == num
                     flagWin = true
                     break
+                else
+                    print "\e[0;31mRespuesta Incorrecta\e[m, "
                 end
             else
                 system("clear")
                 puts "\e[0;31mTu opcion no es valida, recuerda ingresar un numero\e[m"
-                print "presiona Enter para continuar.."
+                print "Has utilizado un intento, presiona Enter para continuar.."
                 gets
+                system("clear")
             end
 
         end
+        # Validamos si la flag ha cambiado por un acierto o por intentos agotados
         if flagWin == true
             puts "=============================================="
-            puts "Has Acertado!! El publico se vuelve locooo!!"
+            puts "\e[0;32mHas Acertado!! El publico se vuelve locooo!!\e[m"
             puts "=============================================="
-            print
+            puts
             print "Presiona Enter para volver al menu principal.."
             gets
             carga_menu()
@@ -81,6 +91,7 @@ def adivina_el_numero
             puts "No has acertado el numero... 🤡"
             print "Deseas reintentar? (S/N): "
             reintento = gets.chomp.to_s.upcase
+            # Validamos la opcion ingresada
             while reintento != "S" && reintento != "N"
                 system("clear")
                 puts "Papi, yo hablo chino?"
@@ -90,7 +101,6 @@ def adivina_el_numero
             if reintento.upcase == "N"
                 flagWin = true
                 carga_menu()
-                # return
             end
         end
     end

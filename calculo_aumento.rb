@@ -25,6 +25,7 @@ def calculo_salario
         unless (1..3).include?(numIncremento)
             system("clear")
             puts "\e[0;31mOpcion no valida, debe elegir entre la opcion 1, 2 o 3\e[m"
+            puts "Ingrese el salario actual: #{salario}"
         end
     end
 
@@ -37,7 +38,7 @@ def calculo_salario
     else
         incremento = 15
     end
-    # Se calcula el salario + aumento segun la eleccion del usuario
+    # Se calcula el salario + aumento segun la eleccion del usuario y se muestra en consola
     salarioFinal = salario + (salario * (incremento/ 100.0))
     system("clear")
     puts "Salario: #{salario} || Incremento: #{incremento}%"
@@ -45,7 +46,7 @@ def calculo_salario
     puts "El total del salario mas el incremento es de: #{salarioFinal}"
     puts "====================================================="
     puts
-    puts "Presiona cualquier tecla para volver al menu principal.."
+    puts "Presiona Enter para volver al menu principal.."
     gets
     system("clear")
 end
